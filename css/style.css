@@ -319,6 +319,10 @@ html {
 }
 
 .footer__input::placeholder {
+  outline: none;
+}
+
+.footer__input::placeholder {
   color: rgba(240, 240, 240, 0.5);
 }
 
