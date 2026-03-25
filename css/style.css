@@ -143,13 +143,13 @@ html {
 }
 
 .middle {
-  padding: 40px 0 180px;
+  padding: 180px 0;
 }
 
 .middle__title {
-  font-weight: 400;
   opacity: 0.7;
-  font-size: 32px;
+  font-weight: 400;
+  font-size: 170px;
   line-height: 120%;
   text-align: center;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 52.22%, rgba(255, 255, 255, 0.6) 100%);
@@ -173,7 +173,7 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 32px;
+  gap: 16px;
   margin-bottom: 180px;
 }
 
@@ -195,11 +195,17 @@ html {
 }
 
 .middle__count {
+  display: inline-flex;
+  position: relative;
+  overflow: hidden;
+  height: 1.1em;
   font-family: var(--second-font);
   font-weight: 400;
-  font-size: 220px;
+  font-size: 170px;
   line-height: 100%;
-  letter-spacing: -0.03em;
+  width: fit-content;
+  gap: 0;
+  justify-content: center;
   text-transform: uppercase;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 52.22%, rgba(255, 255, 255, 0.6) 100%);
   background-clip: text;
@@ -358,41 +364,72 @@ html {
 /* Анимация таймера */
 
 .middle__count {
-    display: inline-flex;
+  display: inline-flex;
+  position: relative;
+  overflow: hidden;
+  height: 1.2em;
+}
+
+.middle__slot {
+  display: flex;
+  justify-content: center;
+  white-space: nowrap;
+  line-height: 1.1em;
+  width: 239px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 52.22%, rgba(255, 255, 255, 0.6) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.35s ease;
+}
+
+.middle__slot.flip-out {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.middle__slot.flip-in {
+  transform: translateY(100%);
+  opacity: 0;
 }
 
 .middle__digit {
-    position: relative;
-    overflow: hidden;
-    display: inline-flex;
-    flex-direction: column;
-    height: 1.2em;      /* запас снизу для выносных элементов Marcellus */
-    align-items: center;
-    vertical-align: top;
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  flex-direction: column;
+  height: 1.2em;
+  /* align-items: center; — убрать */
+  vertical-align: top;
 }
 
 .middle__digit span {
-    display: block;
-    flex-shrink: 0;
-    width: 100%;
-    text-align: center;
-    line-height: 1.2em; /* совпадает с height контейнера */
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 52.22%, rgba(255, 255, 255, 0.6) 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-                opacity 0.35s ease;
+  display: block;
+  flex-shrink: 0;
+  width: 100%;
+  text-align: center;
+  /* центрируем текст внутри span, не сам span */
+  line-height: 1.2em;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 52.22%, rgba(255, 255, 255, 0.6) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.35s ease;
 }
 
 .middle__digit span.flip-out {
-    transform: translateY(-100%);
-    opacity: 0;
+  transform: translateY(-100%);
+  opacity: 0;
 }
 
 .middle__digit span.flip-in {
-    transform: translateY(100%);
-    opacity: 0;
+  transform: translateY(100%);
+  opacity: 0;
 }
 
 .middle__video {
@@ -418,11 +455,11 @@ html {
   }
 
   .middle__item {
-    gap: 24px;
+    gap: 10px;
   }
 
   .middle__align {
-        grid-template-columns: minmax(330px, 540px);
+    grid-template-columns: minmax(330px, 540px);
   }
 
   .hero-global {
@@ -478,7 +515,7 @@ html {
   }
 
   .middle__title {
-    font-size: 26px;
+    font-size: 100px;
     margin-bottom: 160px;
   }
 
@@ -491,7 +528,7 @@ html {
   }
 
   .middle__timer {
-    gap: 24px;
+    gap: 12px;
     margin-bottom: 160px;
   }
 
@@ -505,7 +542,8 @@ html {
   }
 
   .middle__count {
-    font-size: 120px;
+    font-size: 110px;
+    height: 0.94em;
   }
 
   .middle__digit {
@@ -513,7 +551,7 @@ html {
   }
 
   .middle__align {
-            grid-template-columns: minmax(330px, 370px);
+    grid-template-columns: minmax(330px, 370px);
   }
 
   .footer__title {
@@ -546,6 +584,12 @@ html {
 
   .footer {
     padding-bottom: 20px;
+  }
+
+  .middle__slot {
+    font-size: 110px;
+    width: 155px;
+    line-height: 1.1;
   }
 }
 
@@ -590,11 +634,11 @@ html {
   }
 
   .middle__timer {
-    gap: 12px;
+    gap: 6px;
   }
 
   .middle__dots {
-    width: 8px;
+    width: 4px;
     gap: 8px;
   }
 
@@ -603,7 +647,7 @@ html {
   }
 
   .middle__item {
-    gap: 16px;
+    gap: 3px;
   }
 
   .middle__digit {
@@ -627,6 +671,7 @@ html {
     gap: 40px;
     margin-bottom: 374px;
   }
+
   .footer__title {
     margin-bottom: 12px;
   }
@@ -648,5 +693,14 @@ html {
 
   .middle__count {
     font-size: 50px;
+  }
+
+  .middle__title {
+    font-size: 44px;
+  }
+
+  .middle__slot {
+    font-size: 47px;
+    width: 66px;
   }
 }

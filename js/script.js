@@ -2,9 +2,8 @@
 //   ДАТА ОКОНЧАНИЯ ТАЙМЕРА — меняйте здесь
 //   Формат: new Date(год, месяц (0=янв, 11=дек), день, час, минута)
 // ==========================================
-const TIMER_END = new Date(2026, 5, 15, 0, 0); // 15 июня 2025, 00:00
 
-// — дальше не трогать —
+const TIMER_END = new Date(2026, 5, 15, 0, 0);
 
 const items = document.querySelectorAll('.middle__item .middle__count');
 
@@ -12,33 +11,18 @@ function pad(n) {
     return String(n).padStart(2, '0');
 }
 
-function initDigits(el, value) {
-    el.innerHTML = '';
-    value.split('').forEach(char => {
-        const digitEl = document.createElement('div');
-        digitEl.className = 'middle__digit';
-        const span = document.createElement('span');
-        span.textContent = char;
-        digitEl.appendChild(span);
-        el.appendChild(digitEl);
-    });
-}
+function flipTo(el, newValue) {
+    const current = el.querySelector('.middle__slot:not(.flip-out)');
+    if (current && current.textContent === newValue) return;
 
-items.forEach((el, i) => {
-    const values = ['00', '00', '00', '00'];
-    initDigits(el, values[i]);
-});
-
-function flipDigit(digitEl, newChar) {
-    const current = digitEl.querySelector('span');
-    if (current.textContent === newChar) return;
+    el.querySelectorAll('.middle__slot.flip-out').forEach(s => s.remove());
 
     const next = document.createElement('span');
-    next.textContent = newChar;
-    next.classList.add('flip-in');
-    digitEl.appendChild(next);
+    next.className = 'middle__slot flip-in';
+    next.textContent = newValue;
+    el.appendChild(next);
 
-    current.classList.add('flip-out');
+    if (current) current.classList.add('flip-out');
 
     requestAnimationFrame(() => {
         requestAnimationFrame(() => {
@@ -46,15 +30,16 @@ function flipDigit(digitEl, newChar) {
         });
     });
 
-    setTimeout(() => current.remove(), 380);
+    if (current) setTimeout(() => current.remove(), 380);
 }
 
-function flipTo(el, newValue) {
-    const digits = el.querySelectorAll('.middle__digit');
-    newValue.split('').forEach((char, i) => {
-        if (digits[i]) flipDigit(digits[i], char);
-    });
-}
+items.forEach(el => {
+    el.innerHTML = '';
+    const slot = document.createElement('span');
+    slot.className = 'middle__slot';
+    slot.textContent = '00';
+    el.appendChild(slot);
+});
 
 function updateTimer() {
     const now  = new Date();
@@ -92,12 +77,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
   async function formSend(e) {
     e.preventDefault();
-
     let formData = new FormData(form);
-    let responce = await fetch('sendmail.php', {
-      method: 'POST',
-      body: formData
-    });
+    let responce = await fetch('sendmail.php', { method: 'POST', body: formData });
     if (responce.ok) {
       let result = await responce.json();
       console.log('Форма отправлена', result);
@@ -105,4 +86,4 @@ document.addEventListener('DOMContentLoaded', function () {
       alert("Ошибка");
     }
   }
-})
+});
