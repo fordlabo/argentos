@@ -319,6 +319,10 @@ html {
 }
 
 .footer__input::placeholder {
+  color: rgba(240, 240, 240, 0.5);
+}
+
+.footer__input:focus {
   outline: none;
 }
 
@@ -338,6 +342,7 @@ html {
   line-height: 110%;
   text-transform: uppercase;
   color: #222;
+  background-color: #F0F0F0;
   margin-bottom: 12px;
 }
 
