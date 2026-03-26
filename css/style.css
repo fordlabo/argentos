@@ -244,7 +244,7 @@ html {
 
 .footer {
   padding: 60px 0 40px;
-  background: url(../img/follow-bg.webp) no-repeat center / cover;
+  background: url(../img/follow-bg.webp) no-repeat bottom / cover;
 }
 
 .footer__top {
@@ -264,7 +264,7 @@ html {
   font-weight: 600;
   font-size: 56px;
   line-height: 120%;
-  letter-spacing: -0.06em;
+  letter-spacing: -0.01px;
   text-transform: uppercase;
   color: #f0f0f0;
   margin-bottom: 24px;
@@ -350,6 +350,20 @@ html {
   color: #222;
   background-color: #F0F0F0;
   margin-bottom: 12px;
+  transition: 0.3s;
+}
+
+.footer__submit:hover {
+      color: #F6F6F6;
+    background: #A1131B;
+}
+
+.footer__submit img {
+  transition: 0.3s;
+}
+
+.footer__submit:hover img {
+  filter: brightness(10);
 }
 
 .footer__agree {
@@ -439,6 +453,17 @@ html {
 }
 
 /* Анимация таймера */
+
+
+.middle__slot,
+.middle__slot.flip-in,
+.middle__slot.flip-out {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 52.22%, rgba(255, 255, 255, 0.6) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent; /* запасной вариант */
+}
 
 @media (max-width: 1400px) {
   .middle__digit span {

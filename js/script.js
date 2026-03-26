@@ -64,12 +64,37 @@ function updateTimer() {
 updateTimer();
 setInterval(updateTimer, 1000);
 
-document.querySelector('.middle__play').addEventListener('click', function() {
-    const video = document.querySelector('.middle__video');
-    this.remove();
-    video.setAttribute('controls', '');
-    video.play();
+const video = document.querySelector('.middle__video');
+const playBtn = document.querySelector('.middle__play');
+
+playBtn.addEventListener('click', function () {
+  video.muted = false;
+  video.loop = false;
+  video.currentTime = 0;
+
+  if (video.requestFullscreen) {
+    video.requestFullscreen();
+  } else if (video.webkitRequestFullscreen) {
+    video.webkitRequestFullscreen();
+  }
+
+  video.play();
+  playBtn.style.display = 'none';
 });
+
+document.addEventListener('fullscreenchange', handleFullscreenChange);
+document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+
+function handleFullscreenChange() {
+  const isFullscreen = !!(document.fullscreenElement || document.webkitFullscreenElement);
+
+  if (!isFullscreen) {
+    video.muted = true;
+    video.loop = true;
+    video.play();
+    playBtn.style.display = '';
+  }
+}
 
 document.addEventListener('DOMContentLoaded', function () {
   const form = document.querySelector('.footer__form');
